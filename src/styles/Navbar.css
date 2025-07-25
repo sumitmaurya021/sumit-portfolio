@@ -1,24 +1,94 @@
+/* === Navbar Wrapper === */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #222;
+  padding: 20px 50px;
+  background: linear-gradient(90deg, #1a1a2e, #16213e, #0f3460);
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* === Logo === */
 .navbar .logo {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.navbar ul {
+/* === Navigation Links === */
+.nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar a {
+.nav-link {
+  position: relative;
+  font-size: 18px;
   color: white;
   text-decoration: none;
+  padding-bottom: 5px;
+  transition: color 0.3s ease-in-out;
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* === Link Hover Animation === */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: #00f7ff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #00f7ff;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* === Sequential Load Animation === */
+.nav-link:nth-child(1) { animation-delay: 0.2s; }
+.nav-link:nth-child(2) { animation-delay: 0.4s; }
+.nav-link:nth-child(3) { animation-delay: 0.6s; }
+.nav-link:nth-child(4) { animation-delay: 0.8s; }
+
+/* === Fade-In Animation === */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* === Responsive Navbar === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+  }
 }
